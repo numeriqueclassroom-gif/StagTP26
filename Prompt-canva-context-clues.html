@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vibe coding avec Canva Code : un prompt commenté</title>
+<style>
+:root{--ink:#1b3040;--muted:#536776;--mint:#007e77;--paper:#f2f6f7;--line:#d8e3e8;--navy:#123d4e;
+--k1:#1f63a3;--k1b:#eaf2fb;--k2:#1f7a45;--k2b:#e8f6ee;--k3:#6a3fa0;--k3b:#f4effb;--k4:#0f6b6b;--k4b:#e6f6f6;--k5:#a0500f;--k5b:#fdf1e4;--k6:#b23a48;--k6b:#fde8eb}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);line-height:1.55}
+button{font:inherit;cursor:pointer}a{color:#0a6b78}
+.wrap{max-width:1060px;margin:auto;padding:0 22px}
+.mast{background:linear-gradient(115deg,#102639,#16475a 60%,#7d2ae8 130%);color:#fff;padding:26px 0 70px;position:relative;overflow:hidden}
+.mast:after{content:'';width:420px;height:420px;border:1px solid #ffffff30;border-radius:50%;position:absolute;right:-140px;top:-180px;box-shadow:0 0 0 70px #ffffff08,0 0 0 140px #ffffff08}
+.brand{font-size:.76rem;letter-spacing:.15em;font-weight:850;position:relative;z-index:1}
+.mast h1{position:relative;z-index:1;font-size:clamp(2rem,4.6vw,3.3rem);line-height:1.08;letter-spacing:-.04em;margin:34px 0 14px;max-width:820px}
+.mast h1 em{font-style:normal;color:#c9b2ff}
+.mast p{position:relative;z-index:1;max-width:720px;font-size:1.08rem;color:#dbe9ee;margin:0}
+.steps{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;position:relative;z-index:1}
+.steps a{color:#fff;text-decoration:none;background:#ffffff18;border:1px solid #ffffff40;border-radius:999px;padding:7px 14px;font-weight:800;font-size:.9rem}
+.steps a b{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#fff;color:var(--navy);margin-right:6px;font-size:.8rem}
+main{margin-top:-40px;position:relative;z-index:2;padding-bottom:40px}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px 26px;margin-bottom:20px;box-shadow:0 10px 30px #152b3a12}
+.card>h2{display:flex;align-items:center;gap:12px;margin:0 0 6px;font-size:1.5rem;letter-spacing:-.02em}
+.card>h2 .n{width:38px;height:38px;border-radius:12px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:1.1rem;flex-shrink:0}
+.sub{color:var(--muted);margin:0 0 16px}
+.goal{background:linear-gradient(120deg,#e4f4f1,#fff);border:1.5px solid #a9dfd7;border-radius:16px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;margin-bottom:16px}
+.goal .ic{font-size:2rem}.goal h3{margin:0 0 4px;color:var(--navy)}.goal p{margin:0}
+.lenses{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.lens{border-radius:14px;padding:14px;border:1.5px solid var(--k);background:var(--kb)}
+.lens .lab{font-size:.74rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--k)}
+.lens h4{margin:4px 0 6px;font-size:1.05rem}.lens p{margin:0;font-size:.9rem}
+.pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}.pill{font-size:.74rem;font-weight:800;border-radius:999px;padding:2px 9px;background:#fff;border:1px solid var(--k);color:var(--k)}
+.why{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.why div{border-radius:14px;padding:12px 14px}.why .ok{background:#e8f6ee;border:1px solid #93cfab}.why .no{background:#fde8eb;border:1px solid #efb0b8}
+.why h5{margin:0 0 6px;font-size:.95rem}.why ul{margin:0;padding-left:18px;font-size:.9rem}
+/* anatomy */
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.legend span{font-size:.8rem;font-weight:850;border-radius:999px;padding:4px 11px;color:var(--k);background:var(--kb);border:1.5px solid var(--k)}
+.anat{display:grid;gap:12px}
+.blk{display:grid;grid-template-columns:1.55fr 1fr;border-radius:16px;overflow:hidden;border:1.5px solid var(--k)}
+.blk .txt{background:var(--kb);padding:14px 16px;font-family:ui-monospace,"Cascadia Code",Menlo,Consolas,monospace;font-size:.86rem;white-space:pre-wrap;line-height:1.5}
+.blk .txt .tag{display:inline-block;font-family:system-ui,sans-serif;font-weight:900;font-size:.72rem;letter-spacing:.08em;color:#fff;background:var(--k);border-radius:6px;padding:2px 8px;margin-bottom:6px}
+.blk .note{background:#fff;padding:14px 16px;font-size:.92rem}
+.blk .note b{color:var(--k)}
+/* prompt */
+.prompt{position:relative;background:#0f2433;color:#e8f1f5;border-radius:18px;padding:22px;font-family:ui-monospace,"Cascadia Code",Menlo,Consolas,monospace;font-size:.86rem;line-height:1.55;white-space:pre-wrap;max-height:430px;overflow:auto;border:1px solid #23485c}
+.prompt::-webkit-scrollbar{width:10px}.prompt::-webkit-scrollbar-thumb{background:#2c5a70;border-radius:10px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0 4px}
+.btn{border:0;border-radius:12px;padding:12px 18px;font-weight:850;font-size:1rem;display:inline-flex;gap:8px;align-items:center;text-decoration:none}
+.btn.copy{background:linear-gradient(120deg,#7d2ae8,#00c4cc);color:#fff;box-shadow:0 8px 20px #7d2ae844}
+.btn.copy.done{background:#1f7a45}
+.btn.go{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
+.hint{font-size:.85rem;color:var(--muted)}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px;counter-reset:h}
+.how div{background:#f7f3ff;border:1px solid #d9c6fb;border-radius:14px;padding:12px 12px 12px 48px;position:relative;font-size:.9rem}
+.how div:before{counter-increment:h;content:counter(h);position:absolute;left:12px;top:12px;width:26px;height:26px;border-radius:50%;background:#7d2ae8;color:#fff;font-weight:900;display:grid;place-items:center}
+.how b{display:block}
+/* after */
+.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.chk{border:1px solid var(--line);border-left:5px solid var(--mint);border-radius:12px;padding:10px 12px;background:#fff;font-size:.92rem}
+.chk b{display:block;color:var(--navy)}
+.fups{display:grid;gap:10px;margin-top:14px}
+.fup{display:flex;gap:12px;align-items:center;justify-content:space-between;background:#f4f6f8;border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.fup p{margin:0;font-size:.9rem}.fup p small{display:block;font-weight:850;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em}
+.fup button{flex-shrink:0;border:1.5px solid #7d2ae8;color:#7d2ae8;background:#fff;border-radius:10px;padding:7px 12px;font-weight:850;font-size:.85rem}
+.fup button.done{border-color:#1f7a45;color:#1f7a45}
+.capsule{display:inline-flex;gap:6px;align-items:center;font-weight:850;border-radius:999px;padding:6px 14px;border:1.5px solid #8db8e2;background:#eaf2fb;color:#174e80}
+.frame{margin-top:16px;background:#fdf1e4;border:1px solid #e9b47e;border-radius:14px;padding:12px 16px;font-size:.92rem}
+.frame b{color:#a0500f}
+footer{color:var(--muted);font-size:.82rem;text-align:center;padding:10px 0 30px}
+@media(max-width:760px){.blk{grid-template-columns:1fr}.why{grid-template-columns:1fr}.card{padding:18px}}
+@media print{body{background:#fff}.mast{background:#123d4e;-webkit-print-color-adjust:exact;print-color-adjust:exact}.card{box-shadow:none;break-inside:avoid}.prompt{max-height:none;overflow:visible}.bar,.fup button,.steps{display:none}}
+</style>
+</head>
+<body>
+<header class="mast"><div class="wrap">
+<div class="brand">FORMATION DES PROFESSEURS STAGIAIRES · VIBE CODING</div>
+<h1>Créer un outil pour ses élèves avec <em>Canva Code</em></h1>
+<p>Un prompt commenté, prêt à copier : un jeu en anglais qui entraîne une stratégie de lecture transférable, deviner le sens d’un mot grâce au contexte.</p>
+<nav class="steps"><a href="#enjeux"><b>1</b>Les enjeux</a><a href="#anatomie"><b>2</b>Comment le prompt est écrit</a><a href="#prompt"><b>3</b>Copier et envoyer</a><a href="#apres"><b>4</b>Vérifier et améliorer</a></nav>
+</div></header>
+
+<main class="wrap">
+
+<section class="card" id="enjeux">
+<h2><span class="n">1</span>Les enjeux pédagogiques</h2>
+<p class="sub">On part de la compétence des élèves, pas de l’outil (tuile F1).</p>
+<div class="goal"><span class="ic">🎯</span><div><h3>La compétence visée</h3><p>Compréhension de l’écrit, niveau A2 vers B1. Face à un mot inconnu, l’élève apprend à <strong>chercher l’indice dans la phrase</strong> (définition, exemple, contraste, synonyme, cause et conséquence) au lieu de s’arrêter ou de traduire. Une stratégie qui servira sur tous les textes, pas seulement dans ce jeu.</p></div></div>
+<div class="lenses">
+<div class="lens" style="--k:var(--k1);--kb:var(--k1b)"><span class="lab">SAMR</span><h4>Augmentation</h4><p>La même tâche se ferait sur papier ; l’outil ajoute un retour immédiat qui explique l’indice, à chaque question.</p></div>
+<div class="lens" style="--k:var(--k4);--kb:var(--k4b)"><span class="lab">Bloom</span><h4>Comprendre, appliquer, analyser</h4><p>L’élève repère l’indice, le nomme, puis l’applique pour choisir le sens.</p><div class="pills"><span class="pill">Comprendre</span><span class="pill">Appliquer</span><span class="pill">Analyser</span></div></div>
+<div class="lens" style="--k:var(--k3);--kb:var(--k3b)"><span class="lab">4C</span><h4>Esprit critique</h4><p>Justifier son choix par un indice du texte ; en binôme, on ajoute la communication.</p><div class="pills"><span class="pill">🔍 Esprit critique</span><span class="pill">💬 Communication</span></div></div>
+</div>
+<div class="why"><div class="ok"><h5>Où est la plus-value</h5><ul><li>un retour qui explique, même quand la réponse est juste ;</li><li>des élèves qui rejouent à leur rythme, questions mélangées ;</li><li>le professeur conçoit l’outil, les élèves ne passent pas par une IA.</li></ul></div><div class="no"><h5>Ce que l’on évite</h5><ul><li>la traduction en français, qui court-circuite la stratégie ;</li><li>le chronomètre et le classement, qui poussent à deviner au hasard ;</li><li>toute saisie de nom ou de donnée d’élève.</li></ul></div></div>
+<div class="frame"><b>Au regard du cadre :</b> Canva est un service grand public : aucune donnée d’élève dans le prompt ni dans l’application (B2) ; les élèves utilisent le lien publié, sans compte (B3) ; le professeur vérifie chaque question avant diffusion (C6) et signale l’usage de l’IA (B5).</div>
+</section>
+
+<section class="card" id="anatomie">
+<h2><span class="n">2</span>Comment le prompt est rédigé</h2>
+<p class="sub">Les ingrédients de la tuile IA4, plus deux blocs propres à la création d’une application : le déroulé et l’apparence.</p>
+<div class="legend"><span style="--k:var(--k1);--kb:var(--k1b)">Contexte</span><span style="--k:var(--k2);--kb:var(--k2b)">Tâche et objectif</span><span style="--k:var(--k3);--kb:var(--k3b)">Déroulé</span><span style="--k:var(--k5);--kb:var(--k5b)">Contraintes</span><span style="--k:var(--k4);--kb:var(--k4b)">Apparence</span><span style="--k:var(--k6);--kb:var(--k6b)">Exemple</span></div>
+<div class="anat" id="anat"></div>
+</section>
+
+<section class="card" id="prompt">
+<h2><span class="n">3</span>Copier, puis envoyer dans Canva</h2>
+<p class="sub">Le prompt complet, prêt à coller tel quel.</p>
+<div class="prompt" id="ptext"></div>
+<div class="bar"><button class="btn copy" id="copy">📋 Copier le prompt</button><a class="btn go" href="https://www.canva.com/" target="_blank" rel="noopener noreferrer">Ouvrir Canva ↗</a><span class="hint" id="chint">Puis coller dans Canva Code.</span></div>
+<div class="how">
+<div><b>Ouvrir Canva</b>Sur la page d’accueil, ouvrir l’onglet IA Canva.</div>
+<div><b>Choisir Code</b>Sous la barre de prompt, sélectionner &lt;/&gt; Code.</div>
+<div><b>Coller et envoyer</b>Coller le prompt, puis appuyer sur Entrée.</div>
+<div><b>Tester</b>Jouer comme un élève, en se trompant exprès.</div>
+<div><b>Publier</b>Une fois vérifié, publier et partager le lien aux élèves.</div>
+</div>
+</section>
+
+<section class="card" id="apres">
+<h2><span class="n">4</span>Vérifier, puis améliorer par de nouveaux prompts</h2>
+<p class="sub">Le vibe coding est un dialogue : on teste, on repère ce qui ne va pas, on redemande. Canva garde chaque version.</p>
+<div class="checks">
+<div class="chk"><b>L’anglais</b>Chaque phrase est correcte, naturelle, en anglais britannique.</div>
+<div class="chk"><b>Les indices</b>Le sens se déduit vraiment de la phrase, sans connaissance extérieure.</div>
+<div class="chk"><b>Les retours</b>L’explication nomme le bon type d’indice.</div>
+<div class="chk"><b>Le niveau</b>Les phrases restent A2-B1, seul le mot cible est difficile.</div>
+<div class="chk"><b>Les données</b>Aucun champ ne demande de nom ou d’information.</div>
+</div>
+<div class="fups" id="fups"></div>
+<p style="margin:16px 0 6px">À ajouter sur la page de l’application, une fois vérifiée :</p>
+<span class="capsule">🤝 Créé avec l’IA (Canva Code), vérifié par le professeur</span>
+</section>
+
+<footer>Document de formation · Canva Code : voir l’aide officielle de Canva pour l’accès et la publication · Mise en forme générée par IA</footer>
+</main>
+
+<script>
+const BLOCKS=[
+{k:'k1',tag:'CONTEXTE',t:`Je suis professeur d'anglais. Mes élèves ont 14-15 ans, niveau A2 vers B1. En compréhension écrite, ils bloquent dès qu'ils rencontrent un mot inconnu, ou ils cherchent une traduction.`,n:`<b>Qui, pour qui, quel problème.</b> L’IA adapte le niveau de langue, le thème et le ton. Aucune donnée réelle d’élève : un public décrit en général (B2).`},
+{k:'k2',tag:'TÂCHE ET OBJECTIF',t:`Crée une application web interactive d'une seule page, intitulée « Context Clues Detective ».
+Objectif d'apprentissage : entraîner une stratégie transférable, deviner le sens d'un mot inconnu grâce au contexte de la phrase, au lieu de le traduire.`,n:`<b>Ce que l’on veut, et pourquoi.</b> L’objectif pédagogique est écrit noir sur blanc : c’est lui qui guidera les choix de l’IA quand le prompt ne dit rien.`},
+{k:'k3',tag:'DÉROULÉ',t:`1. Écran d'accueil : explique la stratégie en 3 phrases simples et présente 5 types d'indices (definition, example, contrast, synonym, cause and effect), avec un court exemple pour chacun.
+2. 10 questions. Chaque question affiche un mini-texte de 2 ou 3 phrases (thème : environment and city life) avec un mot cible en gras.
+3. Étape 1 : l'élève choisit, parmi 3 extraits de la phrase, celui qui l'aide à comprendre (l'indice). Étape 2 : il choisit le sens du mot parmi 3 propositions en anglais.
+4. Après chaque réponse, juste ou fausse, un retour explique quel extrait était l'indice et de quel type d'indice il s'agit.
+5. Écran final : score, types d'indices réussis et à retravailler, bouton « Play again » qui mélange les questions.`,n:`<b>Le scénario, étape par étape.</b> Numéroter rend le prompt vérifiable : on teste chaque étape. L’étape 1 fait <em>chercher l’indice</em> avant de répondre : c’est elle qui travaille la stratégie, pas le QCM seul.`},
+{k:'k5',tag:'CONTRAINTES',t:`- Tout le texte destiné aux élèves est en anglais britannique (colour, realise, centre), dans des phrases simples de niveau A2-B1 ; seuls les mots cibles sont de niveau B1-B2.
+- Aucune traduction en français.
+- Aucune saisie de nom, aucun compte, aucune donnée enregistrée ou envoyée.
+- Pas de chronomètre, pas de classement entre élèves.
+- Accessible : grands boutons, bon contraste, utilisable au clavier et sur tablette.`,n:`<b>Ce que l’IA ne doit pas faire.</b> Les choix pédagogiques (pas de traduction, pas de chronomètre) et les règles du cadre (aucune donnée) sont imposés, sinon l’IA ajoute souvent un champ « Your name » ou un classement.`},
+{k:'k4',tag:'APPARENCE',t:`Design sobre et chaleureux : fond clair, couleur principale bleu nuit, couleur d'accent orange, police très lisible, une illustration simple de loupe sur l'écran d'accueil.`,n:`<b>Le rendu visuel.</b> Quelques mots suffisent ; on affinera ensuite par de nouveaux prompts.`},
+{k:'k6',tag:'EXEMPLE',t:`Exemple de question attendue :
+"The river was so **polluted** that the fish died and nobody could swim in it any more."
+Extraits proposés : "the river was so" / "the fish died and nobody could swim" / "in it any more".
+Indice : "the fish died and nobody could swim" (cause and effect).
+Sens : a) very dirty  b) very deep  c) very cold.
+Retour : "The clue is the effect: the fish died and nobody could swim. So 'polluted' means very dirty."
+Écris toi-même les 10 questions sur ce modèle, avec au moins une question pour chacun des 5 types d'indices.`,n:`<b>Un modèle complet.</b> L’exemple fixe le format, la longueur et le ton des retours bien mieux qu’une longue description. La dernière phrase demande la variété des types d’indices.`}];
+const full=BLOCKS.map(b=>b.tag+' :\n'+b.t).join('\n\n');
+document.getElementById('anat').innerHTML=BLOCKS.map(b=>`<div class="blk" style="--k:var(--${b.k});--kb:var(--${b.k}b)"><div class="txt"><span class="tag">${b.tag}</span>\n${b.t.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div><div class="note">${b.n}</div></div>`).join('');
+document.getElementById('ptext').textContent=full;
+function copyText(s,btn,label){const done=()=>{btn.classList.add('done');const o=btn.textContent;btn.textContent=label;setTimeout(()=>{btn.classList.remove('done');btn.textContent=o},1800)};
+ if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(s).then(done,()=>fallback(s,done))}else fallback(s,done)}
+function fallback(s,done){const ta=document.createElement('textarea');ta.value=s;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(e){alert('Sélectionnez le texte et copiez-le avec Ctrl+C.')}ta.remove()}
+document.getElementById('copy').addEventListener('click',e=>copyText(full,e.currentTarget,'✅ Copié ! Collez-le dans Canva Code'));
+const FUPS=[
+['Faire relire','Affiche toutes les questions, les extraits, les bonnes réponses et les retours sur une seule page « Teacher view », pour que je puisse tout relire.'],
+['Corriger la langue','Vérifie que tous les textes destinés aux élèves sont en anglais britannique correct et naturel, de niveau A2-B1. Liste les modifications que tu fais.'],
+['Simplifier','L\'étape 1 est trop difficile pour mes élèves : propose seulement 2 extraits au lieu de 3, et ajoute un bouton « Hint » qui surligne l\'indice.'],
+['Projeter en classe','Agrandis tous les textes et les boutons, et augmente le contraste, pour une utilisation au vidéoprojecteur.'],
+['Changer de thème','Garde exactement la même application, mais remplace les 10 questions par des mini-textes sur le thème « school life in the UK ».']];
+document.getElementById('fups').innerHTML=FUPS.map((f,i)=>`<div class="fup"><p><small>${f[0]}</small>${f[1]}</p><button data-i="${i}">Copier</button></div>`).join('');
+document.querySelectorAll('.fup button').forEach(b=>b.addEventListener('click',()=>copyText(FUPS[b.dataset.i][1],b,'Copié ✓')));
+</script>
+</body>
+</html>
